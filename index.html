@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Good Guy Warren</title>
+
+    <script src="/ggw.js"></script>
+
+  </head>
+  <body class="d-flex flex-column h-100">
+
+    <main role="main" class="container text-center flex-shrink-0"">
+      <h1 class="text-center">Good Guy Warren</h1>
+      <canvas id="ggwMeme"></canvas>
+      <p id='source' class='text-right'></p>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted"><a href="https://elizabethwarren.com/">Visit the Warren Campaign Website!</a></span>
+        <br>
+        <span class="text-muted">This site not affiliated with any campaign- it's just made by one dude over a weekend.</span>
+      </div>
+    </footer>
+
+  </body>
+  <script type="text/javascript">
+    function onLoad() {
+      const canvas = document.getElementById("ggwMeme")
+      const source = document.getElementById("source")
+      ggw(canvas, source)
+    }
+    window.onload = onLoad;
+  </script>
+</html>
