@@ -92,7 +92,7 @@
       $(window).on('popstate', function(e){
       	const d = e.state || {data: 'no state'};
         const historyPointers = ggw(canvas, source, d.image || false, d.quote || false)
-        share.innerHTML = `<a href="/?i=${historyPointers[0]}&q=${historyPointers[1]}">Share</a>`
+        share.innerHTML = `<a href="/?i=${historyPointers[0]}&q=${historyPointers[1]}">Share Link to this Meme</a>`
       });
 
       // https://stackoverflow.com/a/4656873/212774
@@ -118,7 +118,7 @@
 
       function newGGW() {
         const pointers = ggw(canvas, source)
-        share.innerHTML = `<a href="/?i=${pointers[0]}&q=${pointers[1]}">Share</a>`
+        share.innerHTML = `<a href="/?i=${pointers[0]}&q=${pointers[1]}">Share Link to this Meme</a>`
         updateUrl(pointers[0], pointers[1])
       }
 
