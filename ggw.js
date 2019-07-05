@@ -19,6 +19,7 @@ function drawTextBG (ctx, location, txt, opts = {}) {
   opts = Object.assign({
     'font': 'Courier',
     'fontSize': '15',
+    'fontModifiers': '',
     'shadowBlur': 4,
     'shadowColor': 'white',
     'backgroundColor': false,
@@ -37,7 +38,7 @@ function drawTextBG (ctx, location, txt, opts = {}) {
     y = ctx.canvas.height - (opts.fontSize * messages.length)
   }
 
-  ctx.font = `${opts.fontSize}px ${opts.font}`
+  ctx.font = `${opts.fontModifiers} ${opts.fontSize}px ${opts.font}`
 
   const margin = 5
   const fontSize = parseInt(opts.font, 10) * 1.1
@@ -109,12 +110,14 @@ function ggw (canvas, source, image=false, quote=false) {
 
     drawTextBG(ctx, 'top', warrenQuote.top, {
       'fontSize': fontSize * imageRatio,
+      'fontModifiers': 'bold',
       'shadowBlur': 10 * imageRatio,
       'shadowColor': 'blue',
       'fontColor': 'white'
     })
     drawTextBG(ctx, 'bottom', warrenQuote.bottom, {
       'fontSize': fontSize * imageRatio,
+      'fontModifiers': 'bold',
       'shadowBlur': 10 * imageRatio,
       'shadowColor': 'blue',
       'fontColor': 'white'
