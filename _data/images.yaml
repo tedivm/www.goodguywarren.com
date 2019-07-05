@@ -1,23 +1,35 @@
-- image: ew1.jpg
-  width: 990
-  height: 558
+- image: ew1b.png
+  width: 992
+  height: 465
+  fontColor: white
+  fontShadowColor: black
 
 - image: ew2.jpg
   width: 990
   height: 558
+  fontColor: white
+  fontShadowColor: black
 
 - image: ew3.jpg
   width: 1028
   height: 665
+  fontColor: white
+  fontShadowColor: black
 
 - image: ew4b.png
   width: 1000
   height: 475
+  fontColor: white
+  fontShadowColor: black
 
 - image: ew5b.png
   width: 1024
   height: 598
+  fontColor: moccasin
+  fontShadowColor: black
 
 - image: ew6b.png
   width: 1024
   height: 550
+  fontColor: white
+  fontShadowColor: black

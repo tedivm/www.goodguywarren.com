@@ -110,15 +110,15 @@ function ggw (canvas, source, image=false, quote=false) {
       'fontSize': fontSize * imageRatio,
       'fontModifiers': 'bold',
       'shadowBlur': 10 * imageRatio,
-      'shadowColor': 'blue',
-      'fontColor': 'white'
+      'shadowColor': warrenImage.fontShadowColor,
+      'fontColor': warrenImage.fontColor
     })
     drawTextBG(ctx, 'bottom', warrenQuote.bottom, {
       'fontSize': fontSize * imageRatio,
       'fontModifiers': 'bold',
       'shadowBlur': 10 * imageRatio,
-      'shadowColor': 'blue',
-      'fontColor': 'white'
+      'shadowColor': warrenImage.fontShadowColor,
+      'fontColor': warrenImage.fontColor
     })
   }
   img.src = `/assets/images/${warrenImage.image}`
