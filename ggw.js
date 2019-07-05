@@ -75,7 +75,7 @@ function drawTextBG (ctx, location, txt, opts = {}) {
 
 function ggw (canvas, source) {
   const ctx = canvas.getContext('2d')
-  const fontSize = 35
+  const fontSize = 40
 
   const warrenImage = sample(images)
   const warrenQuote = sample(quotes)
