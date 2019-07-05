@@ -90,7 +90,7 @@
       $(window).on('popstate', function(e){
       	const d = e.state || {data: 'no state'};
         const historyPointers = ggw(canvas, source, d.image || false, d.quote || false)
-        share.innerHTML = `<a href="/?image=${historyPointers[0]}&quote=${historyPointers[1]}">Share</a>`
+        share.innerHTML = `<a href="/?i=${historyPointers[0]}&q=${historyPointers[1]}">Share</a>`
       });
 
       // https://stackoverflow.com/a/4656873/212774
@@ -111,17 +111,17 @@
             'image': image, 'quote': 'quote'
           },
           $(document).find("title").text(),
-          `/?image=${image}&quote=${quote}`)
+          `/?i=${image}&q=${quote}`)
       }
 
       function newGGW() {
         const pointers = ggw(canvas, source)
-        share.innerHTML = `<a href="/?image=${pointers[0]}&quote=${pointers[1]}">Share</a>`
+        share.innerHTML = `<a href="/?i=${pointers[0]}&q=${pointers[1]}">Share</a>`
         updateUrl(pointers[0], pointers[1])
       }
 
-      const firstPointers = ggw(canvas, source, urlVars.image || false, urlVars.quote || false)
-      share.innerHTML = `<a href="/?image=${firstPointers[0]}&quote=${firstPointers[1]}">Share</a>`
+      const firstPointers = ggw(canvas, source, urlVars.i || false, urlVars.q || false)
+      share.innerHTML = `<a href="/?i=${firstPointers[0]}&q=${firstPointers[1]}">Share</a>`
       updateUrl(firstPointers[0], firstPointers[1])
       $('body').keydown(function(e){
         if (e.keyCode === 13) {
