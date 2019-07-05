@@ -32,8 +32,6 @@ function drawTextBG (ctx, location, txt, opts = {}) {
   if (location == 'bottom') {
     y = ctx.canvas.height - (opts.fontSize * messages.length)
   }
-  console.log(location)
-  console.log(y)
 
   ctx.font = `${opts.fontSize}px ${opts.font}`
 
@@ -87,25 +85,29 @@ function ggw (canvas, source) {
   ctx.canvas.width = width
   ctx.canvas.height = height
 
-  console.log(`<a href="${warrenQuote.source}">${warrenQuote.source}</a>`)
-  console.log(source)
+  const canvasWidth = ctx.canvas.width
+
+  const imageRatio = canvasWidth / width
+
+  console.log(imageRatio)
+
   source.innerHTML = `<a href="${warrenQuote.source}">Source</a>`
 
   const img = new Image
-  img.width = width
-  img.height = height
+  //img.width = width
+  //img.height = height
   img.onload = function () {
-    ctx.drawImage(img, 0, 0)
+    ctx.drawImage(img, 0, 0, canvasWidth, height * imageRatio)
 
     drawTextBG(ctx, 'top', warrenQuote.top, {
-      'fontSize': fontSize,
-      'shadowBlur': 10,
+      'fontSize': fontSize * imageRatio,
+      'shadowBlur': 10 * imageRatio,
       'shadowColor': 'black',
       'fontColor': 'white'
     })
     drawTextBG(ctx, 'bottom', warrenQuote.bottom, {
-      'fontSize': fontSize,
-      'shadowBlur': 10,
+      'fontSize': fontSize * imageRatio,
+      'shadowBlur': 10 * imageRatio,
       'shadowColor': 'black',
       'fontColor': 'white'
     })
