@@ -58,7 +58,6 @@ function drawTextBG (ctx, location, txt, opts = {}) {
     ctx.fillRect(rectX, rectY, width, height * 1.1)
   }
 
-
   ctx.shadowColor = opts.shadowColor
   ctx.shadowBlur = opts.shadowBlur
 
@@ -80,26 +79,23 @@ function ggw (canvas, source) {
   const warrenImage = sample(images)
   const warrenQuote = sample(quotes)
 
-  const width = warrenImage.width
-  const height = warrenImage.height
+  const maxWidth = 750
 
+  const imageWidth = warrenImage.width
+  const imageHeight = warrenImage.height
 
-  ctx.canvas.width = width
-  ctx.canvas.height = height
+  ctx.canvas.width = Math.min(imageWidth, maxWidth)
 
-  const canvasWidth = ctx.canvas.width
-
-  const imageRatio = canvasWidth / width
-
-  console.log(imageRatio)
+  const imageRatio = ctx.canvas.width / imageWidth
+  ctx.canvas.height = imageHeight * imageRatio
 
   source.innerHTML = `<a href="${warrenQuote.source}">Source</a>`
 
-  const img = new Image
-  //img.width = width
-  //img.height = height
+  const img = new Image()
+  img.width = ctx.canvas.width
+  img.height = ctx.canvas.height
   img.onload = function () {
-    ctx.drawImage(img, 0, 0, canvasWidth, height * imageRatio)
+    ctx.drawImage(img, 0, 0)
 
     drawTextBG(ctx, 'top', warrenQuote.top, {
       'fontSize': fontSize * imageRatio,
