@@ -103,10 +103,8 @@ function ggw (canvas, source, image=false, quote=false) {
   source.innerHTML = `<a href="${warrenQuote.source}">Source</a>`
 
   const img = new Image()
-  img.width = ctx.canvas.width
-  img.height = ctx.canvas.height
   img.onload = function () {
-    ctx.drawImage(img, 0, 0)
+    ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height)
 
     drawTextBG(ctx, 'top', warrenQuote.top, {
       'fontSize': fontSize * imageRatio,
