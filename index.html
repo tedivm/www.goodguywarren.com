@@ -121,7 +121,7 @@
       }
 
       const firstPointers = ggw(canvas, source, urlVars.i || false, urlVars.q || false)
-      share.innerHTML = `<a href="/?i=${firstPointers[0]}&q=${firstPointers[1]}">Share</a>`
+      share.innerHTML = `<a href="/?i=${firstPointers[0]}&q=${firstPointers[1]}">Share Link to this Meme</a>`
 
       $('body').keydown(function(e){
         if (e.keyCode === 13) {
