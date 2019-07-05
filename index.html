@@ -46,6 +46,8 @@
       <br>
       <span id='source' class='text-right'></span>
       <br>
+      <span id='share' class='text-right'></span>
+      <br>
       <button id='reload' type="button" class="btn btn-light">More Warren Awesomeness</button>
     </main>
 
@@ -75,19 +77,61 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   </body>
   <script type="text/javascript">
+
     $( document ).ready(function() {
-        const canvas = document.getElementById('ggwMeme')
-        const source = document.getElementById('source')
-        ggw(canvas, source)
-        $('body').keydown(function(e){
-          if (e.keyCode === 13) {
-            e.preventDefault()
-            ggw(canvas, source)
+
+
+      const urlVars = getUrlVars()
+      const canvas = document.getElementById('ggwMeme')
+      const source = document.getElementById('source')
+      const share = document.getElementById('share')
+
+
+      $(window).on('popstate', function(e){
+      	const d = e.state || {data: 'no state'};
+        const historyPointers = ggw(canvas, source, d.image || false, d.quote || false)
+        share.innerHTML = `<a href="/?image=${historyPointers[0]}&quote=${historyPointers[1]}">Share</a>`
+      });
+
+      // https://stackoverflow.com/a/4656873/212774
+      function getUrlVars () {
+          let vars = [], hash;
+          const hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+          for(let i = 0; i < hashes.length; i++)
+          {
+              hash = hashes[i].split('=');
+              vars.push(hash[0]);
+              vars[hash[0]] = hash[1];
           }
-        })
-        $('#reload').click(function () {
-          ggw(canvas, source)
-        })
+          return vars;
+      }
+
+      function updateUrl (image, quote) {
+        history.pushState({
+            'image': image, 'quote': 'quote'
+          },
+          $(document).find("title").text(),
+          `/?image=${image}&quote=${quote}`)
+      }
+
+      function newGGW() {
+        const pointers = ggw(canvas, source)
+        share.innerHTML = `<a href="/?image=${pointers[0]}&quote=${pointers[1]}">Share</a>`
+        updateUrl(pointers[0], pointers[1])
+      }
+
+      const firstPointers = ggw(canvas, source, urlVars.image || false, urlVars.quote || false)
+      share.innerHTML = `<a href="/?image=${firstPointers[0]}&quote=${firstPointers[1]}">Share</a>`
+      updateUrl(firstPointers[0], firstPointers[1])
+      $('body').keydown(function(e){
+        if (e.keyCode === 13) {
+          e.preventDefault()
+          newGGW()
+        }
+      })
+      $('#reload').click(function () {
+        newGGW
+      })
     })
   </script>
 </html>

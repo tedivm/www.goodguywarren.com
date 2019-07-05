@@ -9,6 +9,10 @@ function sample (passedArray) {
   return passedArray[Math.floor(Math.random() * passedArray.length)];
 }
 
+function sampleIndex (passedArray) {
+  return Math.floor(Math.random() * passedArray.length)
+}
+
 
 function drawTextBG (ctx, location, txt, opts = {}) {
 
@@ -72,15 +76,21 @@ function drawTextBG (ctx, location, txt, opts = {}) {
   ctx.restore()
 }
 
-function ggw (canvas, source) {
+function ggw (canvas, source, image=false, quote=false) {
   const ctx = canvas.getContext('2d')
   const fontSize = 40
 
-  const warrenImage = sample(images)
-  const warrenQuote = sample(quotes)
+  if (!image) {
+    image = sampleIndex(images)
+  }
+  if (!quote) {
+    quote = sampleIndex(quotes)
+  }
+
+  const warrenImage = images[image]
+  const warrenQuote = quotes[quote]
 
   const maxWidth = 750
-
   const imageWidth = warrenImage.width
   const imageHeight = warrenImage.height
 
@@ -111,4 +121,5 @@ function ggw (canvas, source) {
     })
   }
   img.src = `/assets/images/${warrenImage.image}`
+  return [image, quote]
 }
