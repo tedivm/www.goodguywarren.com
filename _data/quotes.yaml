@@ -18,8 +18,8 @@
   bottom: She’s already checked the shelf.
   source: https://twitter.com/MerrillBarr/status/1144074388993499136
 
-- top: ''
-  bottom: Always compliments good penmanship.
+- top: 'Always compliments good penmanship.'
+  bottom: ''
   source: https://twitter.com/franklinleonard/status/1144099382620377088
 
 - top: 'Already has her wallet\nout when it’s time to pay.'
@@ -41,3 +41,11 @@
 - top: 'Always allows people with fewer groceries'
   bottom: 'to get in line in front of her.'
   source: https://twitter.com/AuthorKimberley/status/1144299034292707328
+
+- top: 'Nevertheless'
+  bottom: 'She Persisted'
+  source: https://en.wikipedia.org/wiki/Nevertheless,_she_persisted
+
+- top: 'Gets a donation from a small donor.'
+  bottom: 'Calls to say thanks!'
+  source: https://www.theguardian.com/us-news/2019/may/23/elizabeth-warren-2020-candidate-calls-supporters-talks-issues

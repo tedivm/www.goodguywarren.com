@@ -1,2 +1,15 @@
 - image: ew1.jpg
+  width: 990
+  height: 558
+
 - image: ew2.jpg
+  width: 990
+  height: 558
+
+- image: ew3.jpg
+  width: 1028
+  height: 665
+
+- image: ew4.jpg
+  width: 1000
+  height: 667
