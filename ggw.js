@@ -104,13 +104,13 @@ function ggw (canvas, source) {
     drawTextBG(ctx, 'top', warrenQuote.top, {
       'fontSize': fontSize * imageRatio,
       'shadowBlur': 10 * imageRatio,
-      'shadowColor': 'black',
+      'shadowColor': 'blue',
       'fontColor': 'white'
     })
     drawTextBG(ctx, 'bottom', warrenQuote.bottom, {
       'fontSize': fontSize * imageRatio,
       'shadowBlur': 10 * imageRatio,
-      'shadowColor': 'black',
+      'shadowColor': 'blue',
       'fontColor': 'white'
     })
   }
