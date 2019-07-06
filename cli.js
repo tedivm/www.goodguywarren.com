@@ -155,10 +155,16 @@ program
         const fullImagePath = `/assets/ew/${quoteIndex}_${newImageBase}.png`
         const fullHtmlPath = `/_memes/${quoteIndex}-${imageIndex}.html`
         const finalHtmlPath = `/${quoteIndex}-${imageIndex}.html`
-
         const finalPath = __dirname + fullHtmlPath
+        const quoteText = quote.top.replace('\\n', ' ') + ' ' + quote.bottom.replace('\\n', ' ')
         console.log(`Building ${finalPath}`)
-        const pageSpecificFrontMatter = htmlFrontMatter.replace('{{ imagePath }}', fullImagePath).replace('{{ htmlPath }}', finalHtmlPath).replace('{{ quoteSource }}', quote.source)
+
+        let pageSpecificFrontMatter = htmlFrontMatter.replace('{{ imagePath }}', fullImagePath)
+        pageSpecificFrontMatter = pageSpecificFrontMatter.replace('{{ quoteSource }}', quote.source)
+        pageSpecificFrontMatter = pageSpecificFrontMatter.replace('{{ quoteText }}', quoteText)
+        pageSpecificFrontMatter = pageSpecificFrontMatter.replace('{{ htmlPath }}', finalHtmlPath)
+
+
 
         fs.writeFile(finalPath, pageSpecificFrontMatter, function (err) {
           if (err) {
