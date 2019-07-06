@@ -69,23 +69,22 @@
         <image id="ggwMeme"></image>
       {% endif %}
       <br>
+      <br>
+      <button id='reload' type="button" class="btn btn-light">More Warren Memes!</button>
+      <br>
       {% if page.quoteSource %}
-        <span id='source'><a href="{{ page.quoteSource }}">Source</a></span>
+        <a id="source" class="btn btn-light" href="{{ page.quoteSource }}">Quote Source</a>
       {% else %}
-        <span id='source'></span>
+        <a id="source" class="btn btn-light" href="#">Quote Source</a>
       {% endif %}
       <br>
-
       {% if page.htmlPath %}
-        <span id='share'><a href="{{ page.htmlPath }}">Share Link to this Meme</a></span>
+        <a id="share" class="btn btn-light" href="{{ page.htmlPath }}">Share Link to this Meme</a>
       {% else %}
-        <span id='share'></span>
+        <a id="share" class="btn btn-light" href="#">Share Link to this Meme</a>
       {% endif %}
       <br>
-
-      <button id='reload' type="button" class="btn btn-light">More Warren Awesomeness</button>
-      <br>
-      <span><a href="https://elizabethwarren.com/">Visit the Warren Campaign Website!</a></span>
+      <a class="btn btn-primary" href="https://elizabethwarren.com/">Visit the Warren Campaign Website!</a>
     </main>
 
     <footer class="footer mt-auto py-3">
@@ -132,7 +131,7 @@
         const filechunk = filename.substring(0, filename.lastIndexOf('.'))
         const pointers = filechunk.split('-')
         const historyPointers = ggw(imageElement, source, pointers[1], pointers[0])
-        share.innerHTML = `<a href="/${historyPointers[1]}-${historyPointers[0]}.html">Share Link to this Meme</a>`
+        share.href = `/${historyPointers[1]}-${historyPointers[0]}.html`
       });
 
       // https://stackoverflow.com/a/4656873/212774
@@ -158,13 +157,13 @@
 
       function newGGW() {
         const pointers = ggw(imageElement, source)
-        share.innerHTML = `<a href="/${pointers[1]}-${pointers[0]}.html">Share Link to this Meme</a>`
+        share.href = `/${pointers[1]}-${pointers[0]}.html`
         updateUrl(pointers[0], pointers[1])
       }
 
       {% unless page.htmlPath %}
         const firstPointers = ggw(imageElement, source, urlVars.i || false, urlVars.q || false)
-        share.innerHTML = `<a href="/${firstPointers[1]}-${firstPointers[0]}.html">Share Link to this Meme</a>`
+        share.innerHTML = `/${firstPointers[1]}-${firstPointers[0]}.html`
       {% endunless %}
 
       $('body').keydown(function(e){

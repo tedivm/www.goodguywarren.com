@@ -92,7 +92,7 @@ function ggw (imageElement, source, image=false, quote=false) {
   const url = `/assets/ew/${quote}_${newImageName}`
 
   imageElement.src = url
-  source.innerHTML = `<a href="${warrenQuote.source}">Source</a>`
+  source.href = `${warrenQuote.source}`
 
   return [image, quote]
 }
