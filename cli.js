@@ -20,16 +20,17 @@ function drawTextBG (ctx, location, txt, opts = {}) {
     'backgroundColor': false,
     'fontColor': 'black',
     'textBaseline': 'top',
-    'textAlign': 'center'
+    'textAlign': 'center',
+    'border': 0
   }, opts)
   ctx.save()
 
   const messages = txt.split('\\n')
 
   const x = Math.round(ctx.canvas.width / 2)
-  let y = 0
+  let y = 0 + opts.border
   if (location == 'bottom') {
-    y = ctx.canvas.height - (opts.fontSize * messages.length)
+    y = (ctx.canvas.height - (opts.fontSize * messages.length)) - opts.border
   }
 
   ctx.font = `${opts.fontModifiers} ${opts.fontSize}px ${opts.font}`
@@ -75,7 +76,7 @@ function drawTextBG (ctx, location, txt, opts = {}) {
 function ggw (canvas, img, warrenImage, warrenQuote) {
   const ctx = canvas.getContext('2d')
   const fontSize = 40
-
+  const border = 10
   const maxWidth = 750
   const imageWidth = warrenImage.width
   const imageHeight = warrenImage.height
@@ -92,14 +93,16 @@ function ggw (canvas, img, warrenImage, warrenQuote) {
     'fontModifiers': 'bold',
     'shadowBlur': 10 * imageRatio,
     'shadowColor': warrenImage.fontShadowColor,
-    'fontColor': warrenImage.fontColor
+    'fontColor': warrenImage.fontColor,
+    'border': border
   })
   drawTextBG(ctx, 'bottom', warrenQuote.bottom, {
     'fontSize': fontSize * imageRatio,
     'fontModifiers': 'bold',
     'shadowBlur': 10 * imageRatio,
     'shadowColor': warrenImage.fontShadowColor,
-    'fontColor': warrenImage.fontColor
+    'fontColor': warrenImage.fontColor,
+    'border': border
   })
 
 }
