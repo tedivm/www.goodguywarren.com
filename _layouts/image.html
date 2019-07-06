@@ -9,37 +9,40 @@
     <title>Good Guy Warren</title>
     <meta name="title" content="Good Guy Warren">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Facebook / Twitter -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Good Guy Warren">
-
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
+
+    <!-- Title -->
+    <meta property="og:title" content="Good Guy Warren">
     <meta property="twitter:title" content="Good Guy Warren">
 
-    {% if page.htmlPath %}
-      <meta property="og:url" content="https://www.goodguywarren.com{{ page.htmlPath }}">
-      <meta property="twitter:url" content="https://www.goodguywarren.com{{ page.htmlPath }}">
+    <!-- URL -->
+    {% if page.htmlPath -%}
+    <meta property="og:url" content="https://www.goodguywarren.com{{ page.htmlPath }}">
+    <meta property="twitter:url" content="https://www.goodguywarren.com{{ page.htmlPath }}">
     {% else %}
-      <meta property="og:url" content="https://www.goodguywarren.com/">
-      <meta property="twitter:url" content="https://www.goodguywarren.com/">
-    {%- endif -%}
-    {% if page.imagePath %}
-      <meta property="og:image" content="https://www.goodguywarren.com{{ page.imagePath }}">
-      <meta property="twitter:image" content="https://www.goodguywarren.com{{ page.imagePath }}">
+    <meta property="og:url" content="https://www.goodguywarren.com/">
+    <meta property="twitter:url" content="https://www.goodguywarren.com/">
+    {%- endif %}
+    <!-- Image -->
+    {% if page.imagePath -%}
+    <meta property="og:image" content="https://www.goodguywarren.com{{ page.imagePath }}">
+    <meta property="twitter:image" content="https://www.goodguywarren.com{{ page.imagePath }}">
     {% else %}
-      <meta property="og:image" content="https://www.goodguywarren.com/assets/goodguywarren.png">
-      <meta property="twitter:image" content="https://www.goodguywarren.com/assets/goodguywarren.png">
-    {%- endif -%}
-    {% if page.quoteText %}
-      <meta property="og:description" content="Elizabeth Warren- {{ page.quoteText }}">
-      <meta property="twitter:description" content="Elizabeth Warren- {{ page.quoteText }}">
-      <meta name="description" content="Elizabeth Warren- {{ page.quoteText }}">
+    <meta property="og:image" content="https://www.goodguywarren.com/assets/goodguywarren.png">
+    <meta property="twitter:image" content="https://www.goodguywarren.com/assets/goodguywarren.png">
+    {%- endif %}
+    <!-- Description -->
+    {% if page.quoteText -%}
+    <meta property="og:description" content="Elizabeth Warren- {{ page.quoteText }}">
+    <meta property="twitter:description" content="Elizabeth Warren- {{ page.quoteText }}">
+    <meta name="description" content="Elizabeth Warren- {{ page.quoteText }}">
     {% else %}
-      <meta property="og:description" content="Elizabeth Warren- The only candidate who would help you change a tire.">
-      <meta property="twitter:description" content="Elizabeth Warren- The only candidate who would help you change a tire.">
-      <meta name="description" content="Elizabeth Warren- The only candidate who would help you change a tire.">
-    {%- endif -%}
+    <meta property="og:description" content="Elizabeth Warren- The only candidate who would help you change a tire.">
+    <meta property="twitter:description" content="Elizabeth Warren- The only candidate who would help you change a tire.">
+    <meta name="description" content="Elizabeth Warren- The only candidate who would help you change a tire.">
+    {%- endif %}
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -159,14 +162,10 @@
         updateUrl(pointers[0], pointers[1])
       }
 
-
-      {% if page.htmlPath %}
-        share.innerHTML = `<a href="{{ page.htmlPath }}">Share Link to this Meme</a>`
-      {% else %}
+      {% unless page.htmlPath %}
         const firstPointers = ggw(imageElement, source, urlVars.i || false, urlVars.q || false)
         share.innerHTML = `<a href="/${firstPointers[1]}-${firstPointers[0]}.html">Share Link to this Meme</a>`
-      {% endif %}
-
+      {% endunless %}
 
       $('body').keydown(function(e){
         if (e.keyCode === 13) {
