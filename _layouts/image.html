@@ -50,7 +50,7 @@
     <script src="/ggw.js"></script>
 
     <style>
-      canvas {
+      #ggwMeme {
         width: auto;
         height: auto;
         max-width: 100%
@@ -163,7 +163,7 @@
 
       {% unless page.htmlPath %}
         const firstPointers = ggw(imageElement, source, urlVars.i || false, urlVars.q || false)
-        share.innerHTML = `/${firstPointers[1]}-${firstPointers[0]}.html`
+        share.href = `/${firstPointers[1]}-${firstPointers[0]}.html`
       {% endunless %}
 
       $('body').keydown(function(e){
