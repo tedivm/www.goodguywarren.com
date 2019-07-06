@@ -1,0 +1,24 @@
+{
+  "name": "www.goodguywarren.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ggw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tedivm/www.goodguywarren.com.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tedivm/www.goodguywarren.com/issues"
+  },
+  "homepage": "https://github.com/tedivm/www.goodguywarren.com#readme",
+  "dependencies": {
+    "canvas": "^2.5.0",
+    "commander": "^2.20.0",
+    "js-yaml": "^3.13.1"
+  }
+}

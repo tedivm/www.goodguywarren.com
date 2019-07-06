@@ -77,10 +77,7 @@ function drawTextBG (ctx, location, txt, opts = {}) {
   ctx.restore()
 }
 
-function ggw (canvas, source, image=false, quote=false) {
-  const ctx = canvas.getContext('2d')
-  const fontSize = 40
-
+function ggw (imageElement, source, image=false, quote=false) {
   if (!image) {
     image = sampleIndex(images)
   }
@@ -91,36 +88,11 @@ function ggw (canvas, source, image=false, quote=false) {
   const warrenImage = images[image]
   const warrenQuote = quotes[quote]
 
-  const maxWidth = 750
-  const imageWidth = warrenImage.width
-  const imageHeight = warrenImage.height
+  const newImageName = warrenImage['image'].substr(0, warrenImage['image'].lastIndexOf('.')) + '.png'
+  const url = `/assets/ew/${quote}_${newImageName}`
 
-  ctx.canvas.width = Math.min(imageWidth, maxWidth)
-
-  const imageRatio = ctx.canvas.width / imageWidth
-  ctx.canvas.height = imageHeight * imageRatio
-
+  imageElement.src = url
   source.innerHTML = `<a href="${warrenQuote.source}">Source</a>`
 
-  const img = new Image()
-  img.onload = function () {
-    ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height)
-
-    drawTextBG(ctx, 'top', warrenQuote.top, {
-      'fontSize': fontSize * imageRatio,
-      'fontModifiers': 'bold',
-      'shadowBlur': 10 * imageRatio,
-      'shadowColor': warrenImage.fontShadowColor,
-      'fontColor': warrenImage.fontColor
-    })
-    drawTextBG(ctx, 'bottom', warrenQuote.bottom, {
-      'fontSize': fontSize * imageRatio,
-      'fontModifiers': 'bold',
-      'shadowBlur': 10 * imageRatio,
-      'shadowColor': warrenImage.fontShadowColor,
-      'fontColor': warrenImage.fontColor
-    })
-  }
-  img.src = `/assets/images/${warrenImage.image}`
   return [image, quote]
 }
