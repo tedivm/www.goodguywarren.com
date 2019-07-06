@@ -125,8 +125,10 @@
       const share = document.getElementById('share')
 
       $(window).on('popstate', function(e){
-      	const d = e.state || {data: 'no state'};
-        const historyPointers = ggw(imageElement, source, d.image || false, d.quote || false)
+        const filename = window.location.href.substring(window.location.href.lastIndexOf('/')+1)
+        const filechunk = filename.substring(0, filename.lastIndexOf('.'))
+        const pointers = filechunk.split('-')
+        const historyPointers = ggw(imageElement, source, pointers[1], pointers[0])
         share.innerHTML = `<a href="/${historyPointers[1]}-${historyPointers[0]}.html">Share Link to this Meme</a>`
       });
 
@@ -145,7 +147,7 @@
 
       function updateUrl (image, quote) {
         history.pushState({
-            'image': image, 'quote': 'quote'
+            'image': image, 'quote': quote
           },
           $(document).find("title").text(),
           `/${quote}-${image}.html`)
