@@ -46,7 +46,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script src="/ggw.js"></script>
 
     <style>
@@ -79,9 +79,9 @@
       {% endif %}
       <br>
       {% if page.htmlPath %}
-        <a id="share" class="btn btn-light" href="{{ page.htmlPath }}">Share Link to this Meme</a>
+        <button id="share" class="btn btn-light copy" data-clipboard-text="{{ page.htmlPath }}">Copy Link to this Meme</button>
       {% else %}
-        <a id="share" class="btn btn-light" href="#">Share Link to this Meme</a>
+        <button id="share" class="btn btn-light copy" data-clipboard-text="#">Copy Link to this Meme</button>
       {% endif %}
       <br>
       <a class="btn btn-primary" href="https://elizabethwarren.com/">Visit the Warren Campaign Website!</a>
@@ -110,11 +110,23 @@
     fathom('trackPageview');
     </script>
     <!-- / Fathom -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"></script>
+
   </body>
   <script type="text/javascript">
 
     $( document ).ready(function() {
+
+      const clipboard = new ClipboardJS('.copy');
 
       // For compatibility with old style URLs
       const urlVars = getUrlVars()
@@ -125,13 +137,19 @@
       const imageElement = document.getElementById('ggwMeme')
       const source = document.getElementById('source')
       const share = document.getElementById('share')
+      const jShare = $(share)
+      jShare.attr('data-clipboard-text', `${window.location.protocol}//${window.location.host}${jShare.attr('data-clipboard-text')}`)
+
+      clipboard.on('success', function(e) {
+        jShare.effect("pulsate", { times : 1 }, 500);
+      })
 
       $(window).on('popstate', function(e){
         const filename = window.location.href.substring(window.location.href.lastIndexOf('/')+1)
         const filechunk = filename.substring(0, filename.lastIndexOf('.'))
         const pointers = filechunk.split('-')
         const historyPointers = ggw(imageElement, source, pointers[1], pointers[0])
-        share.href = `/${historyPointers[1]}-${historyPointers[0]}.html`
+        $(share).attr('data-clipboard-text', `${window.location.protocol}//${window.location.host}/${historyPointers[1]}-${historyPointers[0]}.html`)
       });
 
       // https://stackoverflow.com/a/4656873/212774
@@ -157,13 +175,13 @@
 
       function newGGW() {
         const pointers = ggw(imageElement, source)
-        share.href = `/${pointers[1]}-${pointers[0]}.html`
+        $(share).attr('data-clipboard-text', `${window.location.protocol}//${window.location.host}/${pointers[1]}-${pointers[0]}.html`)
         updateUrl(pointers[0], pointers[1])
       }
 
       {% unless page.htmlPath %}
         const firstPointers = ggw(imageElement, source, urlVars.i || false, urlVars.q || false)
-        share.href = `/${firstPointers[1]}-${firstPointers[0]}.html`
+        $(share).attr('data-clipboard-text', `${window.location.protocol}//${window.location.host}/${firstPointers[1]}-${firstPointers[0]}.html`)
       {% endunless %}
 
       $('body').keydown(function(e){
